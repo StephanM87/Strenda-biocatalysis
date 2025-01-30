@@ -1,0 +1,462 @@
+id: stbc
+name: Reaction conditions
+title: Reaction conditions
+default_prefix: stbc
+default_range: string
+imports:
+- linkml:types
+classes:
+  DynamicpH_TFCR:
+    description: If there is a pH gradient or different pHs are measured in the system, these must be described as detailed as possible. Depending on the buffer chosen, a temperature shift may also result in a pH shift.
+    attributes:
+      event_description:
+        description: Information regarding the event that caused the pH change. In the case of a fed-batch reaction protocol, this event can also be the planned adjustment of the pH value to another specific value based on     the current progress of the reaction process.
+        required: true
+      pH_after_event:
+        description: The pH that is present after a specific event has occurred.
+        required: true
+        range: float
+        minimum_value: 0
+      detected_when:
+        description: Specification whether all components of the reaction solution were already present or if some were added after the measurement at the timepoint of the pH measurement.
+        required: true
+      pH_beginning:
+        description: The initial pH, prior to the start of the reaction, should be specified.
+        required: true
+        range: float
+        minimum_value: 0
+      temperature:
+        description: The temperature at the time of pH measurement.
+        required: true
+        range: float
+        minimum_value: 0
+      calibration_pH_electrode:
+        description: Usually, a pH electrode is calibrated using standard buffers at 20-25 °C. If the conditions in the reaction mixture differ from this, it should be specified. ( if_applicable )
+        required: true
+      time_unit:
+        description: Common units for specifying time can be s (seconds) or min (minutes).
+        required: true
+      pH_gradient_beginning:
+        description: The initial pH from which the pH gradient begins. ( if_applicable )
+        required: true
+        range: float
+        minimum_value: 0
+      measurement_points:
+        description: Information about the locations or time points where pH measurements are taken to monitor the gradient. This can be important to ensure that the gradient behaves as intended. ( if_applicable )
+        required: true
+      time_at_XY:
+        description: Specification of the exact time point XY  at which the pH was measured.
+        required: true
+        range: float
+        minimum_value: 0
+      gradient_length:
+        description: The distance or time span over which the pH gradient is applied. ( if_applicable )
+        required: true
+        range: float
+        minimum_value: 0
+      special_treatment:
+        description: If there are any other specific methods, procedures, characteristics or aspects related to the pH value that are important for reproducibility and are not described by the aforementioned                    metadata, they should be explained here.
+        required: true
+      pH_at_XY:
+        description: The pH can also be measured at a variably chosen time point XY  during the reaction.
+        required: true
+        range: float
+        minimum_value: 0
+      gradient_length_unit:
+        description: The gradient length can be specified either as the physical distance (e.g. in meters) or as the time span (e.g. in minutes). ( if_applicable )
+        required: true
+      temperature_unit:
+        description: The temperature can be specified in units such as K, °C, or °F.
+        required: true
+      pH_gradient_end:
+        description: The target pH reached after the pH gradient is applied. ( if_applicable )
+        required: true
+        range: float
+        minimum_value: 0
+      detected_how:
+        description: The pH value of a reaction can be determined in various ways, such as using a pH meter, pH paper, titration, electrochemical sensors, or other methods.
+        required: true
+  EventBasedTemperatureShift_WMRS:
+    description: If the temperature is changed during the course of the reaction or there is an event-based change, this must be documented precisely.
+    attributes:
+      time_unit:
+        description: Common units for specifying time can be s (seconds), min (minutes) or h (hours).
+        required: true
+      temperature_unit:
+        description: The temperature can be specified in units such as K, °C, or °F.
+        required: true
+      event_description:
+        description: Information regarding the event that caused the temperature change. In the case of a fed-batch reaction protocol, this event can also be the planned adjustment of the temperature to another specific        value based on the current progress of the reaction process.
+        required: true
+      temperature_beginning:
+        description: The initial temperature, prior to the start of the reaction, should be specified.
+        required: true
+        range: float
+        minimum_value: 0
+      time_at_XY:
+        description: Specification of the exact time point XY  at which the temperature was measured.
+        required: true
+        range: float
+        minimum_value: 0
+      temperature_at_XY:
+        description: The temperature can also be measured at a variably chosen time point XY  during the reaction.
+        required: true
+        range: float
+        minimum_value: 0
+      temperature_after_event:
+        description: The temperature that is present after a specific event has occurred.
+        required: true
+        range: float
+        minimum_value: 0
+      special_treatment:
+        description: If there are any other specific methods, procedures, characteristics or aspects related to the temperature that are important for reproducibility and are not described by the aforementioned                 metadata, they should be explained here.
+        required: true
+  SolidPhase_TFCR:
+    description: Definition of the solid phase used in the reaction.Gas phase
+    attributes:
+      solid_amount:
+        description: Mass of the solid used in the reaction solution.
+        required: true
+        range: float
+        minimum_value: 0
+      solid_type:
+        description: Information about the type of solid used, whether it is a support material, solid catalyst, or any other solid compound.
+        required: true
+      solid_unit:
+        description: In the case of solids, common units like grams, milligrams, or micrograms can be used.
+        required: true
+  DynamicTemperature_TFCR:
+    description: If there is a temperature gradient or different temperatures are measured in the system, these must be described as well as possible.
+    attributes:
+      gradient_length:
+        description: The distance or time span over which the temperature gradient is applied. ( if_applicable )
+        required: true
+        range: float
+        minimum_value: 0
+      time_unit:
+        description: Common units for specifying time can be s (seconds), min (minutes) h (hours).
+        required: true
+      temperature_unit:
+        description: The temperature can be specified in units such as K, °C, or °F.
+        required: true
+      temperature_at_XY:
+        description: The temperature can also be measured at a variably chosen time point XY  during the reaction.
+        required: true
+        range: float
+        minimum_value: 0
+      temperature_gradient_end:
+        description: The target temperature reached after the temperature gradient is applied. ( if_applicable )
+        required: true
+        range: float
+        minimum_value: 0
+      temperature_gradient_beginning:
+        description: The initial temperature from which the temperature gradient begins. ( if_applicable )
+        required: true
+        range: float
+        minimum_value: 0
+      event_description:
+        description: Information regarding the event that caused the temperature change. In the case of a fed-batch reaction protocol, this event can also be the planned adjustment of the temperature to another specific        value based on the current progress of the reaction process.
+        required: true
+      measurement_points:
+        description: Information about the locations or time points where temperature measurements are taken to monitor the gradient. This can be important to ensure that the gradient behaves as intended.                       ( if_applicable )
+        required: true
+      temperature_after_event:
+        description: The temperature that is present after a specific event has occurred.
+        required: true
+        range: float
+        minimum_value: 0
+      temperature_beginning:
+        description: The initial temperature, prior to the start of the reaction, should be specified.
+        required: true
+        range: float
+        minimum_value: 0
+      special_treatment:
+        description: If there are any other specific methods, procedures, characteristics or aspects related to the temperature profile that are important for reproducibility and are not described by the aforementioned         metadata, they should be explained here.
+        required: true
+      gradient_length_unit:
+        description: The gradient length can be specified either as the physical distance (e.g. in meters) or as the time span (e.g. in minutes). ( if_applicable )
+        required: true
+      time_at_XY:
+        description: Specification of the exact time point XY  at which the temperature was measured.
+        required: true
+        range: float
+        minimum_value: 0
+  LiquidPhase_WMRS:
+    description: If more then one liquid phase exists the metadata has to be recorded according to the number of liquid phases.Solid phase
+    attributes:
+      liquid_type:
+        description: Information about the type of liquid used, whether it is an organic solvent,an aqueous buffer or are mixture of both.
+        required: true
+      liquid_amount:
+        description: Amount of the liquid added to the reaction.
+        required: true
+        range: float
+        minimum_value: 0
+      liquid_unit:
+        description: In case of aqueous liquids, mL (milliliter) is often used as unit, in case of organic solvents, volume percentage (Vol %) or volume fraction (Vol/Vol) is utilized.
+        required: true
+  GasPhase_WMRS:
+    description: Definition of the gas phase used in the reaction. If a gas mixture is involved, this must be taken into account.
+    attributes:
+      gas_unit:
+        description: In the case of gases, common units are volume percentage (Vol %), volume fraction (Vol/Vol), mole percentage (Mol %) or molar fraction (Mol/Mol).
+        required: true
+      gas_type:
+        description: Information about the type of gas used, whether it is nitrogen, carbon dioxide, argon, oxygen or other gases.
+        required: true
+      gas_amount:
+        description: Concentration of the gas in the gas phase.
+        required: true
+        range: float
+        minimum_value: 0
+  SolidPhase_WMRS:
+    description: Definition of the solid phase used in the reaction.Gas phase
+    attributes:
+      solid_unit:
+        description: In the case of a solid compound, common units like grams, milligrams, or micrograms can be used.
+        required: true
+      solid_type:
+        description: Information about the type of solid used, whether it is a support material, solid catalyst, or any other solid compound.
+        required: true
+      solid_amount:
+        description: Mass of the solid compound used in the reaction solution.
+        required: true
+        range: float
+        minimum_value: 0
+  TemperatureConstant_WMRS:
+    description: The temperature, if constant, must be clearly defined.Event-based temperature shift
+    attributes:
+      temperature_unit:
+        description: The temperature can be specified in units such as K, °C, or °F.
+        required: true
+      temperature:
+        description: Temperature during the reaction.
+        required: true
+        range: float
+        minimum_value: 0
+      special_treatment:
+        description: If there are any other specific methods, procedures, characteristics or aspects related to the temperature that are important for reproducibility and are not described by the aforementioned                 metadata, they should be explained here.
+        required: true
+  MultiphasicSystemDescription_TFCR:
+    description: To describe a multiphasic system, precise information about the phases used and the applied system must be provided.
+    attributes:
+      phases_number:
+        description: Number of phases present in the system, if there is an aqueous and a gas phase present, the number is 2.
+        required: true
+        range: float
+        minimum_value: 0
+      Flow_rate_unit:
+        description: Common units for describing flow rate include L/min (liters per minute), mL/h (milliliters per hour), m³/h (cubic meters per hour), or other volume units per unit of time.
+        required: true
+      Flow_rate:
+        description: The flow rate must be specified to determine how fast a liquid or gas is flowing through a reactor or system.
+        required: true
+        range: float
+      special_treatment:
+        description: If there are any other specific methods, procedures, characteristics or aspects related to the multiphasic system that are important for reproducibility and are not described by the aforementioned           metadata, they should be explained here.
+        required: true
+  GasPhase_TFCR:
+    description: Definition of the gas phase used in the reaction. If a gas mixture is involved, this must be taken into account.
+    attributes:
+      gas_amount:
+        description: Concentration of the gas in the gas phase.
+        required: true
+        range: float
+        minimum_value: 0
+      gas_type:
+        description: Information about the type of gas used, whether it's nitrogen dioxide, argon, oxygen or other gases.
+        required: true
+      gas_unit:
+        description: In the case of gases, common units are volume percentage (Vol %), volume fraction (Vol/Vol), mole percentage (Mol %) or molar fraction (Mol/Mol).
+        required: true
+  pHConstant_TFCR:
+    description: Information about the pH value in the system, if the pH is constant over the course of the reaction.Dynamic pH
+    attributes:
+      temperature:
+        description: The temperature at the time of pH measurement.
+        required: true
+        range: float
+        minimum_value: 0
+      pH_value:
+        description: The value of the pH.
+        required: true
+        range: float
+        minimum_value: 0
+      temperature_unit:
+        description: The temperature can be specified in units such as K, °C, or °F.
+        required: true
+      calibration_pH_electrode:
+        description: Usually, a pH electrode is calibrated using standard buffers at 20-25 °C. If the conditions in the reaction mixture differ from this, it should be specified. ( if_applicable )
+        required: true
+      detected_when:
+        description: Specification of the timepoint at which the pH was measured. It includes whether the pH value was measured before, during, or after the reaction and whether all components of the reaction solution were     already present or if some were added after the measurement.
+        required: true
+      special_treatment:
+        description: If there are any other specific methods, procedures, characteristics or aspects related to the pH value that are important for reproducibility and are not described by the aforementioned                    metadata, they should be explained here.
+        required: true
+      detected_how:
+        description: The pH value of a reaction can be determined in various ways, such as using a pH meter, pH paper, titration, electrochemical sensors, or other methods.
+        required: true
+  pHConstant_WMRS:
+    description: Information about the pH value in the system, if the pH is constant over the course of the reaction.Event-based pH shift
+    attributes:
+      calibration_pH_electrode:
+        description: Usually, a pH electrode is calibrated using standard buffers at 20-25 °C. If the conditions in the reaction mixture differ from this, it should be specified. ( if_applicable )
+        required: true
+      special_treatment:
+        description: If there are any other specific methods, procedures, characteristics or aspects related to the pH value that are important for reproducibility and are not described by the aforementioned                    metadata, they should be explained here.
+        required: true
+      detected_how:
+        description: The pH value of a reaction can be determined in various ways, such as using a pH meter, pH paper, titration, electrochemical sensors, or other methods.
+        required: true
+      temperature_unit:
+        description: The temperature can be specified in units such as K, °C, or °F.
+        required: true
+      temperature:
+        description: The temperature at the time of pH measurement.
+        required: true
+        range: float
+        minimum_value: 0
+      pH_value:
+        description: Value of the pH.
+        required: true
+        range: float
+        minimum_value: 0
+      detected_when:
+        description: Specification of the timepoint at which the pH was measured. It includes whether the pH value was measured before, during, or after the reaction and whether all components of the reaction solution were     already present or if some were added after the measurement.
+        required: true
+  LiquidPhase_TFCR:
+    description: If more then one liquid phase exists the metadata has to be recorded according to the number of liquid phases.Solid phase
+    attributes:
+      liquid_amount:
+        description: Amount of the liquid added to the reaction.
+        required: true
+        range: float
+        minimum_value: 0
+      liquid_unit:
+        description: In case of aqueous liquids, mL (milliliter) is often used as unit, in case of organic solvents, volume percentage (Vol %) or volume fraction (Vol/Vol) is utilized.
+        required: true
+      liquid_type:
+        description: Information about the type of liquid used, whether it is an organic solvent, an aqueous buffer or a mixture of both.
+        required: true
+  EventBasedpHShift_WMRS:
+    description: If the pH is changed during the course of the reaction or there is an event-based change, this must be documented precisely. Depending on the buffer chosen, a temperature shift may also result in a pH shift.
+    attributes:
+      pH_at_XY:
+        description: The pH can also be measured at a variably chosen time point XY  during the reaction.
+        required: true
+        range: float
+        minimum_value: 0
+      time_at_XY:
+        description: Specification of the exact time point XY  at which the pH was measured.
+        required: true
+        range: float
+        minimum_value: 0
+      temperature:
+        description: The temperature at the time of pH measurement.
+        required: true
+        range: float
+        minimum_value: 0
+      temperature_unit:
+        description: The temperature can be specified in units such as K, °C, or °F.
+        required: true
+      time_unit:
+        description: Common units for specifying time can be s (seconds) or min (minutes).
+        required: true
+      special_treatment:
+        description: If there are any other specific methods, procedures, characteristics or aspects related to the pH value that are important for reproducibility and are not described by the aforementioned                    metadata, they should be explained here.
+        required: true
+      detected_how:
+        description: The pH value of a reaction can be determined in various ways, such as using a pH meter, pH paper, titration, electrochemical sensors, or other methods.
+        required: true
+      calibration_pH_electrode:
+        description: Usually, a pH electrode is calibrated using standard buffers at 20-25 °C. If the conditions in the reaction mixture differ from this, it should be specified. ( if_applicable )
+        required: true
+      pH_after_event:
+        description: The pH that is present after a specific event has occurred.
+        required: true
+        range: float
+        minimum_value: 0
+      pH_beginning:
+        description: The initial pH, prior to the start of the reaction, should be specified.
+        required: true
+        range: float
+        minimum_value: 0
+      event_description:
+        description: Information regarding the event that caused the pH change. In the case of a fed-batch reaction protocol, this event can also be the planned adjustment of the pH value to another specific value based on     the current progress of the reaction process.
+        required: true
+      detected_when:
+        description: Specification whether all components of the reaction solution were already present or if some were added after the measurement at the timepoint of the pH measurement.
+        required: true
+  MonoliquidSystemDescription_WMRS:
+    description: To describe a monoliquid system, precise information about the solvent (mixture) used and the applied reaction system must be provided.
+    attributes:
+      special_treatment:
+        description: If there are any other specific methods, procedures, characteristics or aspects related to the monoliquid system that are important for reproducibility and are not described by the aforementioned           metadata, they should be explained here.
+        required: true
+      solvent_description:
+        description: The solvent used in the reaction system, e.g. a buffered aqueous solution or an organic solvent.
+        required: true
+      ionic_strength:
+        description: 'Ionic strength calculated according to the dissolved ions in the solvent. The following formula can be used: $$I = \frac{1}{2} \sum _ {i=1}^n C_i Z_i^2$$ where, I - ionic strength, Ci - ionic concentration and Zi - ion charges. ( if_applicable )'
+        required: true
+        range: float
+        minimum_value: 0
+      ionic_strength_unit:
+        description: The unit of ionic strength is usually expressed in mol/L (moles per liter), or in mmol/L (millimoles per liter). ( if_applicable )
+        required: true
+      further_additives:
+        description: Further additive like cosolvents used to increase solubility of components, e.g. DMSO.
+        required: true
+  MonoliquidSystemDescription_TFCR:
+    description: To describe a monoliquid system, precise information about the solvent used and the applied system must be provided.
+    attributes:
+      ionic_strength_unit:
+        description: The unit of ionic strength is usually expressed in mol/L (moles per liter), or in mmol/L (millimoles per liter). ( if_applicable )
+        required: true
+      further_additives:
+        description: Further additive like cosolvents used to increase solubility of reactants, e.g. DMSO.
+        required: true
+      ionic_strength:
+        description: 'Ionic strength calculated according to the dissolved ions in the solvent. The following formula can be used: $$I = \frac{1}{2} \sum _ {1}^n C_i Z_i^2$$ where, I - ionic strength, Ci - ionic concentration and Zi - ion charges ( if_applicable )'
+        required: true
+        range: float
+        minimum_value: 0
+      special_treatment:
+        description: If there are any other specific methods, procedures, characteristics or aspects related to the monoliquid system that are important for reproducibility and are not described by the aforementioned           metadata, they should be explained here.
+        required: true
+      Flow_rate:
+        description: The flow rate must be specified to determine how fast a liquid or gas is flowing through a reactor or system.
+        required: true
+        range: float
+      solvent_description:
+        description: The solvent used in the reaction system, e.g. a buffered aqueous solution or an organic solvent.
+        required: true
+      Flow_rate_unit:
+        description: Common units for describing flow rate include L/min (liters per minute), mL/h (milliliters per hour), m³/h (cubic meters per hour), or other volume units per unit of time.
+        required: true
+  TemperatureConstant_TFCR:
+    description: The temperature, if constant, must be clearly defined.Dynamic temperature
+    attributes:
+      temperature:
+        description: Temperature during the reaction.
+        required: true
+        range: float
+        minimum_value: 0
+      temperature_unit:
+        description: The temperature can be specified in units such as K, °C, or °F.
+        required: true
+      special_treatment:
+        description: If there are any other specific methods, procedures, characteristics or aspects related to the temperature that are important for reproducibility and are not described by the aforementioned                 metadata, they should be explained here.
+        required: true
+  MultiphasicSystemDescription_WMRS:
+    description: To describe a multiphasic system, precise information about the phases used and the applied system must be provided.
+    attributes:
+      phases_number:
+        description: Number of phases present in the system, if there is an aqueous and a gas phase present, the number is 2.
+        required: true
+        range: float
+        minimum_value: 0
+      special_treatment:
+        description: If there are any other specific methods, procedures, characteristics or aspects related to the multiphasic system that are important for reproducibility and are not described by the aforementioned           metadata, they should be explained here.
+        required: true

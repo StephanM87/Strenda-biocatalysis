@@ -1,0 +1,278 @@
+id: stbc
+name: Vessels and mixing
+title: Vessels and mixing
+default_prefix: stbc
+default_range: string
+imports:
+- linkml:types
+classes:
+  LiquidOrGasImpelledMixing:
+    description: Detailed information about the mixing mode used, whether it involves liquid or gas impelled mixing, is essential for ensuring the reproducibility and understanding of enzymatic reactions.
+    attributes:
+      residence_time:
+        description: The residence time, often denoted as "τ" (tau), refers to the average amount of time a substance or component spends inside a specific system or reactor and is to be specified.
+        required: true
+        range: float
+        minimum_value: 0
+      passive_mixing:
+        description: The design of the coils and the flow patterns created by the geometry of the tubing can lead to passive mixing as the fluid flows through the reactor without the need for external agitation. More           detailed information must be provided to describe the process.
+        required: true
+      volume_of_liquid_solid_phase:
+        description: In the context of enzymatic reactions or any chemical processes involving heterogeneous mixtures like a liquid and solid phase, essential parameters for describing the system involve the              composition of the phases, the percentage or fraction of the total volume occupied by the liquid-solid phase mixture, and further information.
+        required: true
+      active_T_or_Y_mixer:
+        description: Key features for describing an active Y or T mixer can include inlet ports, mixer chamber, outlet port, control, materials amon others.
+        required: true
+      pulsing:
+        description: The pulsing process involves periodically injecting or introducing specific components, such as reactants or additives, into a reaction system at regular intervals or in a pulsatile manner. More            detailed information must be provided to describe the process.
+        required: true
+      residence_time_unit:
+        description: The units for residence time can vary depending on the system and the units used for volume and flow rate. Common units include s (seconds), min (minutes), h (hours), or any time-related units.
+        required: true
+      reynolds_number:
+        description: The Reynolds number (Re) is a dimensionless quantity used in fluid dynamics to predict the flow regime of a fluid within a specific system. It helps to determine whether the flow is laminar, turbulent, or     somewhere in between.
+        required: true
+      special_treatment:
+        description: If there are any other specific methods, procedures, characteristics or aspects related to the liquid or gas impelled mixing that are important for reproducibility and are not described by the              aforementioned metadata, they should be explained here.
+        required: true
+  TubularFlowContinuousReactor:
+    description: When conducting enzymatic reactions in tubular flow or continuous reactors, it is essential to provide detailed information about the reactor setup, e.g. plug flow reactor, and operating conditions to ensure reproducibility and transparency in reporting the experimental process.
+    attributes:
+      special_treatment:
+        description: If there are any other specific methods, procedures, characteristics or aspects related to the tubular flow/continuous reactor or its preparation for the reaction that are important for reproducibility     and are not described by the aforementioned metadata, they should be explained here.
+        required: true
+      tubing:
+        description: When using tubing in a tubular flow/continuous reactor, various pieces of information can be provided, such as tubing material, diameter, length, connections, etc.
+        required: true
+      geometry:
+        description: The exact geometry of the tubular flow/continuous reactor.
+        required: true
+      reactor_type:
+        description: There are several types of tubular flow/continuous reactors, e.g. packed bed reactor, or a plug flow reactor, differing in design and intended use. A detailed description is required.
+        required: true
+      volume_unit:
+        description: The volume is typically expressed in L (liters).
+        required: true
+      material:
+        description: Material the reactor is made of, e.g. glass, stainless steel or other materials.
+        required: true
+      localisation_of_the_catalyst:
+        description: Specify the exact location of the catalyst in the tubular flow/continuous reactor. The biocatalyst is typically present in the liquid phase or immobilized on a support matrix (such as particles or          membranes).
+        required: true
+      volume:
+        description: Indicate the total volume capacity of the tubular flow/continuous reactor.
+        required: true
+        range: float
+        minimum_value: 0
+  StirredTankReactor:
+    description: Stirred Tank Reactors (STRs) are frequently employed as versatile and controlled vessels, allowing for precise regulation of key parameters like temperature, pH, and stirring speed. All relevant specifications or attributes need to be described.Tubular flow/continuous reactor
+    attributes:
+      geometry:
+        description: The geometry of the reactor, in particular of interest is the ratio of height to width.
+        required: true
+      material:
+        description: Material the reactor is made of, e.g. glass, polypropylene etc.
+        required: true
+      temperature_control:
+        description: The temperature in a Stirred Tank Reactor can be controlled through various methods, typically using external heat sources or cooling systems such as heating jackets, cooling coils, or external             temperature control units.
+        required: true
+      bottom_type:
+        description: Shape of the bottom of the reactor, e.g. a round bottom or a flat bottom.
+        required: true
+      gas_supply:
+        description: Gas can be supplied to a Stirred Tank Reactor in various ways, such as through sparging using a tube or an aeration basket, bubbling, or direct injection into the reactor vessel.
+        required: true
+      special_treatment:
+        description: If there are any other specific methods, procedures, characteristics or aspects related to the Stirred Tank Reactor or its preparation for the reaction that are important for reproducibility and are        not described by the aforementioned metadata, they should be explained here.
+        required: true
+      gas_supply_rate:
+        description: Specification of the gas supply rate.
+        required: true
+        range: float
+        minimum_value: 0
+      volume_unit:
+        description: The volume is typically expressed in L (liters).
+        required: true
+      gas_supply_rate_unit:
+        description: The units for the gas supply rate in a Stirred Tank Reactor can be L/min (liters per minute), m³/h (cubic meters per hour), or other volume units per unit of time.
+        required: true
+      volume:
+        description: Indicate the total volume capacity of the Stirred Tank Reactor.
+        required: true
+        range: float
+        minimum_value: 0
+      gas_consumption:
+        description: Common gases that are supplied to the reactor include, e.g., air, oxygen, hydrogen, etc.
+        required: true
+      type:
+        description: There are several types of Stirred Tank Reactors, differing in design and intended use. A detailed description is required.
+        required: true
+  Vial:
+    description: Vials are sealable containers available in various sizes and materials, playing a crucial role in sample storage and handling, as well as serving as reaction vessels.Plate
+    attributes:
+      vial_material:
+        description: Specify the material of the vial, such as glass or plastic, as it can influence the reaction.
+        required: true
+      closure_type:
+        description: Indicate the type of closure or stopper used for the vial, as it affects sealing and the course of the reaction. If no closure or seal was used for the vial, this should be noted as well.
+        required: true
+      vial_size_unit:
+        description: For describing the vial size, you can use mL (milliliters) as the unit when referring to volume or cm (centimeters) when referring to dimensions.
+        required: true
+      vial_size:
+        description: The vial's size, which can be its volume or its dimensions.
+        required: true
+        range: float
+        minimum_value: 0
+      special_treatment:
+        description: If there are any other specific methods, procedures, characteristics or aspects related to the vial or its preparation for the reaction that are important for reproducibility and are not                    described by the aforementioned metadata, they should be explained here.
+        required: true
+  Plate:
+    description: It's crucial to provide detailed information about the plate type, material, well configuration, and other relevant specifications to ensure reproducibility and accuracy of the experimental setup.Stirred Tank Reactor
+    attributes:
+      well_arrangement:
+        description: The arrangement of the wells in the plate, for example, in rows and columns.
+        required: true
+      sealing_material:
+        description: The material of the sealing film or lid. ( if_applicable )
+        required: true
+      sealing_method:
+        description: Indicate if the wells were sealed with a sealing film or lid. ( if_applicable )
+        required: true
+      lot_number:
+        description: The lot number, also known as a batch number or code, is a unique identifier assigned to a specific batch of a product. This makes it possible to check or track information on production.
+        required: true
+        range: float
+        minimum_value: 0
+      supplier:
+        description: Information about the supplier from which the plate was purchased.
+        required: true
+      plate_material:
+        description: The material from which the plate is made, such as plastic (polystyrene), glass, or metal.
+        required: true
+      special_treatment:
+        description: If there are any other specific methods, procedures, characteristics or aspects related to the plate or its preparation for the reaction that are important for reproducibility and are not                    described by the aforementioned metadata, they should be explained here.
+        required: true
+      plate_type:
+        description: The type of plate, such as microtiter plate, deep-well plate, or others.
+        required: true
+      number_of_wells:
+        description: The total number of wells or cavities in the plate.
+        required: true
+      well_shape:
+        required: true
+      well_volume:
+        description: The volume of each well is, usually expressed in µL (microliters).
+        required: true
+  Shaking:
+    description: Shaking is an essential method for ensuring uniform mixing and, consequently, recording relevant metadata is crucial for maintaining consistent reaction conditions.Mechanically impelled mixing (stirring)
+    attributes:
+      position:
+        description: Information regarding the orientation of the vessel in the shaking system relative to deflection.
+        required: true
+      shaking_type:
+        description: The type of shaking used to mix the reaction (e.g., horizontal, vertical, back-and-forth or circulatory).
+        required: true
+      special_treatment:
+        description: If there are any other specific methods, procedures, characteristics or aspects related to the shaking that are important for reproducibility and are not described by the aforementioned metadata, they      should be explained here.
+        required: true
+      deflection_unit:
+        description: Units such as mm (millimeters) or μm (micrometers) could be used to describe deflection in relation to the movement of the shaking system.
+        required: true
+      speed:
+        description: Specify the speed or frequency at which the shaking was conducted.
+        required: true
+        range: float
+        minimum_value: 0
+      deflection:
+        description: Information about the extent of deflection or bending of the agitator from its original position of the horizontal shaking system.
+        required: true
+        range: float
+        minimum_value: 0
+      speed_unit:
+        description: The shaking speed or frequency could be expressed in units such as rpm (rounds per minute) or Hz (cycles per second).
+        required: true
+  MechanicallyImpelledMixing:
+    description: When utilizing mechanically impelled mixing in enzymatic reactions, it is essential to provide information about the mixing method and related parameters.Liquid or gas impelled mixing
+    attributes:
+      stirrer_speed:
+        description: Specify the speed or frequency at which the stirring was conducted.
+        required: true
+        range: float
+        minimum_value: 0
+      stirrer_geometry:
+        description: There are various morphologies or geometries, such as radial impellers, axial impellers, helical ribbon impellers, paddle impellers, and more, depending on its design and intended purpose.
+        required: true
+      height_of_stirrer_above_vessel_base:
+        description: The vertical distance between the bottom of the vessel or container (where the reaction takes place) and the lowest point of the stirring element or stirrer, which is usually located just above the         vessel base.
+        required: true
+        range: float
+        minimum_value: 0
+      stir_bar_shape:
+        description: The shape or configuration of the stir bar, whether it's cylindrical, octagonal, oval, or another shape. Different shapes can interact with the reaction mixture differently, influencing mixing patterns and efficiency.
+        required: true
+      special_treatment:
+        description: If there are any other specific methods, procedures, characteristics or aspects related to the mechanically impelled mixing (stirring) that are important for reproducibility and are not described by        the aforementioned metadata, they should be explained here.
+        required: true
+      power_per_volume_unit:
+        description: The units commonly used for expressing the stirring power are W/L (watts per liter) or kW/m³ (kilowatts per cubic meter).
+        required: true
+      speed_unit:
+        description: The unit for stirring speed can be expressed in RPM (revolutions per minute), Hz (Hertz), or rad/s (radians per second), depending on the measurement instruments and scientific conventions used.
+        required: true
+      distance_between_stirrers_unit:
+        description: The distance between stirrers can be specified in mm (millimeters), cm (centimeters), or m (meters), depending on the size and scale of the stirring system.
+        required: true
+      power_per_volume:
+        description: The amount of stirring power or energy input into a system per unit volume.
+        required: true
+        range: float
+        minimum_value: 0
+      stirrer_blade_size_unit:
+        description: In the case of impellers in a stirred tank reactor, the diameter of the impeller blades is typically specified. This diameter can be measured in millimeters (mm) or centimeters (cm).
+        required: true
+      stirrer_blade_size:
+        description: The size of the impeller blades in a stirred tank reactor.
+        required: true
+        range: float
+        minimum_value: 0
+      supplier:
+        description: If available, details of the specific designation or manufacturer's name of the stirrer should be provided for precise identification.
+        required: true
+      number_of_stirrer_blades:
+        description: The number of blades on each stirrer.
+        required: true
+        range: float
+        minimum_value: 0
+      stirrer_blade_pitch_angle:
+        description: The pitch angle at which the blades or paddles of a stirring mechanism are positioned relative to the plane of rotation. It's typically expressed in ° (degrees).
+        required: true
+        range: float
+        minimum_value: 0
+      stir_bar_size:
+        required: true
+        range: float
+        minimum_value: 0
+      number_of_stirrers:
+        description: The number of stirrers available in the system.
+        required: true
+        range: float
+        minimum_value: 0
+      distance_between_stirrers:
+        description: Information about the distance, spacing or separation between the stirring rods or impellers within a reaction vessel or container.
+        required: true
+        range: float
+        minimum_value: 0
+      stirrer_material:
+        description: The specific composition or nature of the material should be indicated, e.g. whether it is made of magnetic material, a PTFE (polytetrafluoroethylene) coating, stainless steel or other relevant features that determine its structural or functional properties within the experimental setup.
+        required: true
+      height_of_stirrer_above_vessel_base_unit:
+        description: 'Common units for defining the vertical distance between the bottom of the vessel and the lowest point of the stirrer include: mm (millimeters), cm (centimeters) and m (meters).'
+        required: true
+      stir_bar_size_unit:
+        required: true
+        range: float
+        minimum_value: 0
+      stirring_type:
+        description: There are several types of stirring methods used in laboratory and industrial settings, including magnetic stirring (from vessel bottom), mechanical stirring, overhead stirring and other methods.
+        required: true

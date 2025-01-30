@@ -17,3 +17,4 @@ json-schema-all = { out = "schemes/json/", per-spec = true }
 python-pydantic = { out = "python/strendabiocat/*.py", per-spec = true }
 mk-docs = { out = "docs/guidelines/*.md", per-spec = true }
 typescript = { out = "typescript/src/*.ts", per-spec = true }
+linkml = { out = "linkml/*.yaml", per-spec = true }
